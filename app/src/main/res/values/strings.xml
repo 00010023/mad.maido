@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Maido</string>
+    <string name="tasks">Tasks</string>
+    <string name="add_description">ADD</string>
+    <string name="new_task_text">New Task goes here</string>
+    <string name="new_task_add_text">Save</string>
+    <string name="loader_screen_text">Centerized Logo Picture on Loader</string>
+</resources>
