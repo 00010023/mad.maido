@@ -1,4 +1,4 @@
-package com.uwussimo.maido.Handlers;
+package com.uwussimo.maido.Activities;
 
 import android.content.DialogInterface;
 import android.graphics.Canvas;

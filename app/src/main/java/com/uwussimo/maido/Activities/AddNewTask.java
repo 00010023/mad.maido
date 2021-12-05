@@ -1,4 +1,4 @@
-package com.uwussimo.maido.Handlers;
+package com.uwussimo.maido.Activities;
 
 import android.app.Activity;
 import android.content.DialogInterface;

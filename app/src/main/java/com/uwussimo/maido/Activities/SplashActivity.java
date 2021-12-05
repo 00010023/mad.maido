@@ -1,4 +1,4 @@
-package com.uwussimo.maido.Handlers;
+package com.uwussimo.maido.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.uwussimo.maido.MainActivity;
 import com.uwussimo.maido.R;
 
 public class SplashActivity extends AppCompatActivity {

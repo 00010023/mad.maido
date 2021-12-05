@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Maido"
         android:fullBackupContent="true">
         <activity
-            android:name=".Handlers.SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true" />
     </application>
 

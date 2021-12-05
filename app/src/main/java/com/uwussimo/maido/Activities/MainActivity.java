@@ -1,5 +1,5 @@
 
-package com.uwussimo.maido;
+package com.uwussimo.maido.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -12,9 +12,8 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uwussimo.maido.Adapter.TodoAdapter;
-import com.uwussimo.maido.Handlers.AddNewTask;
-import com.uwussimo.maido.Handlers.RecyclerItemTouchHelper;
 import com.uwussimo.maido.Model.TodoModel;
+import com.uwussimo.maido.R;
 import com.uwussimo.maido.Utils.DatabaseHandler;
 import com.uwussimo.maido.Utils.DialogCloseListener;
 

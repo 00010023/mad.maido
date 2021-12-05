@@ -11,8 +11,8 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.uwussimo.maido.Handlers.AddNewTask;
-import com.uwussimo.maido.MainActivity;
+import com.uwussimo.maido.Activities.AddNewTask;
+import com.uwussimo.maido.Activities.MainActivity;
 import com.uwussimo.maido.Model.TodoModel;
 import com.uwussimo.maido.R;
 import com.uwussimo.maido.Utils.DatabaseHandler;
