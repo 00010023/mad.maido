@@ -23,6 +23,6 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         // Let it reload in a few secs
-        }, 1000)
+        }, 2000);
     }
 }

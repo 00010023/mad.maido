@@ -31,7 +31,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="32dp"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="@android:color/black"
         android:src="@drawable/ic_baseline_add"
         android:contentDescription="@string/add_description" />
 
