@@ -26,12 +26,24 @@
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:id="@+id/todoTextBoxDescription"
+            android:id="@+id/todoTimeBoxTime"
             android:layout_below="@+id/todoCheckBox"
             android:layout_alignParentStart="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toStartOf="@id/todoPriorityColor"
+            android:layout_marginEnd="10dp"
+            android:text="@string/date_time_of_todo" />
+
+        <TextView
+            android:id="@+id/todoTextBoxDescription"
+            android:layout_below="@+id/todoTimeBoxTime"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="5dp"
             android:layout_toStartOf="@id/todoPriorityColor"
             android:layout_marginEnd="10dp"

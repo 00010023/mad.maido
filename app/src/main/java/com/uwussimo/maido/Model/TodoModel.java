@@ -2,7 +2,7 @@ package com.uwussimo.maido.Model;
 
 public class TodoModel {
     private int id, status;
-    private String task, priority, notes;
+    private String task, priority, notes, date;
 
     public int getId() { return id; }
 
@@ -40,5 +40,13 @@ public class TodoModel {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

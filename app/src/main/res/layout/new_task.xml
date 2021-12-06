@@ -125,11 +125,38 @@
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/newTodoDate"
+        android:layout_below="@+id/newTaskRadioLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:text=""
+        />
+
+    <Button
+        android:id="@+id/dateTimePicker"
+        android:layout_below="@+id/newTaskRadioLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:text="Pick A Date for Todo" />
+
     <Button
         android:id="@+id/newTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newTaskRadioLayout"
+        android:layout_below="@id/dateTimePicker"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"

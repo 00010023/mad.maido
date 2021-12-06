@@ -23,7 +23,12 @@ import com.uwussimo.maido.Model.TodoModel;
 import com.uwussimo.maido.R;
 import com.uwussimo.maido.Utils.DatabaseHandler;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Objects;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     private List<TodoModel> todoList;
@@ -72,6 +77,19 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         });
         holder.subtitle.setText(item.getNotes());
 
+        @SuppressLint("SimpleDateFormat") final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy");
+        final Calendar c = Calendar.getInstance();
+
+        try {
+            c.setTime(Objects.requireNonNull(sdf.parse(item.getDate())));
+            c.add(Calendar.MONTH, 1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        holder.date.setText(formatter.format(c.getTime()));
+
         int color = 0;
         String type = item.getPriority();
         if (type.matches("Normal")) {
@@ -117,6 +135,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         bundle.putString("task", item.getTask());
         bundle.putString("priority", item.getPriority());
         bundle.putString("notes", item.getNotes());
+        bundle.putString("date", item.getDate());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
@@ -126,12 +145,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         CheckBox task;
         TextView subtitle;
         ImageView priority;
+        TextView date;
 
         ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
             subtitle = view.findViewById(R.id.todoTextBoxDescription);
             priority = view.findViewById(R.id.todoPriorityColor);
+            date = view.findViewById(R.id.todoTimeBoxTime);
         }
     }
 

@@ -17,4 +17,5 @@
     <string name="priority_title">Priority:</string>
     <string name="task_title">Title:</string>
     <string name="additional_title">Additional:</string>
+    <string name="date_time_of_todo">Date Time of Todo</string>
 </resources>

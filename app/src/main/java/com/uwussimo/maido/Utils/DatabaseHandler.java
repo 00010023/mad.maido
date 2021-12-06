@@ -21,8 +21,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String STATUS = "status";
     private static final String PRIORITY = "priority";
     private static final String NOTES = "notes";
+    private static final String DATE = "date";
     private static final String CREATE_TODO_TABLE = "CREATE TABLE " + TODO_TABLE + "(" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, "
-            + STATUS + " INTEGER, " + PRIORITY + " TEXT, " + NOTES + " TEXT)";
+            + STATUS + " INTEGER, " + PRIORITY + " TEXT, " + DATE + " TEXT, " + NOTES + " TEXT)";
 
     private SQLiteDatabase db;
 
@@ -51,6 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cv.put(STATUS, 0);
         cv.put(PRIORITY, task.getPriority());
         cv.put(NOTES, task.getNotes());
+        cv.put(DATE, task.getDate());
         db.insert(TODO_TABLE, null, cv);
     }
 
@@ -63,13 +65,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cur = db.query(TODO_TABLE, null, null, null, null, null, null, null);
             if(cur != null){
                 if(cur.moveToFirst()){
-                    do{
+                    do {
                         TodoModel task = new TodoModel();
                         task.setId(cur.getInt(cur.getColumnIndex(ID)));
                         task.setTask(cur.getString(cur.getColumnIndex(TASK)));
                         task.setStatus(cur.getInt(cur.getColumnIndex(STATUS)));
                         task.setPriority(cur.getString(cur.getColumnIndex(PRIORITY)));
                         task.setNotes(cur.getString(cur.getColumnIndex(NOTES)));
+                        task.setDate(cur.getString(cur.getColumnIndex(DATE)));
                         taskList.add(task);
                     }
                     while(cur.moveToNext());
@@ -105,6 +108,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void updateNotes(int id, String notes) {
         ContentValues cv = new ContentValues();
         cv.put(NOTES, notes);
+        db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
+    }
+
+    public void updateDate(int id, String date) {
+        ContentValues cv = new ContentValues();
+        cv.put(DATE, date);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
