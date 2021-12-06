@@ -1,4 +1,4 @@
-package com.uwussimo.maido.Activities;
+package com.uwussimo.maido.Middlewares;
 
 import androidx.appcompat.app.AppCompatActivity;
 

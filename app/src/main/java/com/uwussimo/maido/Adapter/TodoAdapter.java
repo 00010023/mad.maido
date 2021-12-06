@@ -10,23 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.uwussimo.maido.Activities.AddNewTask;
-import com.uwussimo.maido.Activities.MainActivity;
+import com.uwussimo.maido.Middlewares.AddNewTask;
+import com.uwussimo.maido.Middlewares.MainActivity;
 import com.uwussimo.maido.Model.TodoModel;
 import com.uwussimo.maido.R;
 import com.uwussimo.maido.Utils.DatabaseHandler;
 
-import org.w3c.dom.Text;
-
-import java.io.Console;
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
