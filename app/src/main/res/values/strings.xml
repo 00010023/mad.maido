@@ -13,4 +13,8 @@
     <string name="radio_normal">Normal</string>
     <string name="radio_low">Low</string>
     <string name="help_menu">Help Menu Bar</string>
+    <string name="new_task_addition">Detailed information about the task...</string>
+    <string name="priority_title">Priority:</string>
+    <string name="task_title">Title:</string>
+    <string name="additional_title">Additional:</string>
 </resources>

@@ -18,7 +18,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="bottom"
-        android:text="Title:"
+        android:text="@string/task_title"
         />
 
     <EditText
@@ -29,7 +29,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:autofillHints="@null"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:background="@android:color/transparent"
         android:textColor="@color/black"
         android:hint="@string/new_task_text"
@@ -48,7 +48,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="bottom"
-        android:text="Additional:"
+        android:text="@string/additional_title"
         />
 
     <EditText
@@ -59,10 +59,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:autofillHints="@null"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@android:color/transparent"
-        android:hint="Detailed information about the task..."
+        android:hint="@string/new_task_addition"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:inputType="text" />
 
@@ -78,7 +78,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="bottom"
-        android:text="Priority:"
+        android:text="@string/priority_title"
         />
 
     <RadioGroup
@@ -95,6 +95,7 @@
 
         <RadioButton
             android:id="@+id/radioHigh"
+            android:buttonTint="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -104,6 +105,7 @@
 
         <RadioButton
             android:id="@+id/radioNormal"
+            android:buttonTint="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -113,6 +115,7 @@
 
         <RadioButton
             android:id="@+id/radioLow"
+            android:buttonTint="@color/gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -129,6 +132,7 @@
         android:layout_below="@id/newTaskRadioLayout"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentEnd="true"
         android:foregroundTint="@color/black"
         android:background="@android:color/transparent"

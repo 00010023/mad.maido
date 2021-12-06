@@ -3,6 +3,7 @@ package com.uwussimo.maido.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,13 +49,23 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
         final TodoModel item = todoList.get(position);
         holder.task.setText(item.getTask());
+
+        if (item.getStatus() == 0) {
+            holder.task.setPaintFlags(0);
+        } else {
+            holder.task.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
+
         holder.task.setChecked(toBoolean(item.getStatus()));
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    holder.task.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
                     db.updateStatus(item.getId(), 1);
+
                 } else {
+                    holder.task.setPaintFlags(0);
                     db.updateStatus(item.getId(), 0);
                 }
             }
