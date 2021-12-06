@@ -1,62 +1,76 @@
 
 package com.uwussimo.maido;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.uwussimo.maido.Adapter.TodoAdapter;
+import com.uwussimo.maido.Handlers.AddNewTask;
+import com.uwussimo.maido.Handlers.RecyclerItemTouchHelper;
 import com.uwussimo.maido.Model.TodoModel;
+import com.uwussimo.maido.Utils.DatabaseHandler;
+import com.uwussimo.maido.Utils.DialogCloseListener;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView taskRecyclerView;
-    private TodoAdapter taskAdapter;
+public class MainActivity extends AppCompatActivity implements DialogCloseListener {
+
+    private DatabaseHandler db;
+
+    private RecyclerView tasksRecyclerView;
+    private TodoAdapter tasksAdapter;
+    private FloatingActionButton fab;
+
     private List<TodoModel> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        taskList = new ArrayList<>();
+        db = new DatabaseHandler(this);
+        db.openDatabase();
 
-        // Wrapper
-        getSupportActionBar().hide();
-        taskRecyclerView = findViewById(R.id.tasksRecyclerView);
-        taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tasksRecyclerView = findViewById(R.id.tasksRecyclerView);
+        tasksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tasksAdapter = new TodoAdapter(db,MainActivity.this);
+        tasksRecyclerView.setAdapter(tasksAdapter);
 
-        // Model Manager
-        taskAdapter = new TodoAdapter(this);
-        taskRecyclerView.setAdapter(taskAdapter);
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
-        // Sample Data to test
-        TodoModel task = new TodoModel();
-        task.setTask("A test task to test");
-        task.setStatus(0);
-        task.setId(1);
+        fab = findViewById(R.id.fab);
 
-        // Adding Sample
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
-        taskList.add(task);
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
 
-        // Stimuling Datas
-        taskAdapter.setTasks(taskList);
+        tasksAdapter.setTasks(taskList);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
+            }
+        });
+    }
+
+    @Override
+    public void handleDialogClose(DialogInterface dialog){
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
     }
 }
