@@ -6,4 +6,11 @@
     <string name="new_task_add_text">Save</string>
     <string name="loader_screen_text">Centerized Logo Picture on Loader</string>
     <string name="subTasks">Keep track of your todo with us!</string>
+    <string name="todo_checkbox">Title of your Todo goes here</string>
+    <string name="todo_substring">Additional information will be shown here!</string>
+    <string name="todo_prioritycolor">Todo Status will be shown here</string>
+    <string name="radio_high">High</string>
+    <string name="radio_normal">Normal</string>
+    <string name="radio_low">Low</string>
+    <string name="help_menu">Help Menu Bar</string>
 </resources>

@@ -45,21 +45,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="High" />
+            android:paddingHorizontal="5dp"
+            android:text="@string/radio_high" />
 
         <RadioButton
             android:id="@+id/radioNormal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Normal" />
+            android:paddingHorizontal="5dp"
+            android:text="@string/radio_normal" />
 
         <RadioButton
             android:id="@+id/radioLow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Low" />
+            android:paddingHorizontal="5dp"
+            android:text="@string/radio_low" />
 
     </RadioGroup>
 

@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private RecyclerView tasksRecyclerView;
     private TodoAdapter tasksAdapter;
     private FloatingActionButton fab;
+    private FloatingActionButton help;
 
     private List<TodoModel> taskList;
 
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
         fab = findViewById(R.id.fab);
+        help = findViewById(R.id.help);
 
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
@@ -63,6 +68,30 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
             public void onClick(View v) {
                 AddNewTask.newInstance().show(getSupportFragmentManager(), AddNewTask.TAG);
             }
+        });
+
+        help.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               AlertDialog.Builder builder = new AlertDialog.Builder(tasksAdapter.getContext());
+               builder.setTitle("Welcome to our Todo Application!");
+               builder.setMessage(Html.fromHtml("<b>We have some gestures that you would consider to use:</b>" +
+                       "<br>Swipe Left - <i>Delete a todo</i>" +
+                       "<br>Swipe Right - <i>Edit a todo</i>" +
+                       "<br>\"+\" button - <i>Add a new todo</i>" +
+                       "<br>" +
+                       "<br><b>Thank you for using our application!</b>"
+               ));
+               builder.setCancelable(true);
+               builder.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                       dialog.cancel();
+                   }
+               });
+
+               AlertDialog alert = builder.create();
+               alert.show();
+           }
         });
     }
 

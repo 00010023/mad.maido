@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Debug;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,23 +130,19 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
                 String note = newTaskSubText.getText().toString();
-                String priority;
-
-                switch (newTaskPriority.getCheckedRadioButtonId()) {
-                    case R.id.radioLow:
-                        priority = "Low";
-                        break;
-                    case R.id.radioHigh:
-                        priority = "High";
-                        break;
-                    default:
-                        priority = "Normal";
+                String priority = "";
+                if (newTaskPriority.getCheckedRadioButtonId() != -1) {
+                    int id = newTaskPriority.getCheckedRadioButtonId();
+                    View radiobutton = newTaskPriority.findViewById(id);
+                    int radioId = newTaskPriority.indexOfChild(radiobutton);
+                    RadioButton btn = (RadioButton) newTaskPriority.getChildAt(radioId);
+                    priority = (String) btn.getText();
                 }
 
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
-                    db.updatePriority(bundle.getInt("priority"), priority);
-                    db.updateNotes(bundle.getInt("notes"), note);
+                    db.updatePriority(bundle.getInt("id"), priority);
+                    db.updateNotes(bundle.getInt("id"), note);
                 }
                 else {
                     TodoModel task = new TodoModel();

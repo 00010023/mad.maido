@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/drawable/ic_baseline_add.xml" value="0.378125" />
         <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/drawable/ic_baseline_edit.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21822916666666667" />
-        <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/layout/activity_main.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/layout/activity_splash.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/layout/new_task.xml" value="0.33" />
         <entry key="..\:/Users/UwUssimo/Documents/GitHub/mad.maido/app/src/main/res/layout/task_layout.xml" value="0.5" />

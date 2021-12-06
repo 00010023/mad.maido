@@ -17,9 +17,11 @@
             android:id="@+id/todoCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title of your Todo goes here"
-            android:paddingStart="8dp"
             android:buttonTint="@android:color/black"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:text="@string/todo_checkbox"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -30,7 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
-            android:text="Additional information will be shown here!" />
+            android:layout_toStartOf="@id/todoPriorityColor"
+            android:layout_marginEnd="10dp"
+            android:text="@string/todo_substring" />
 
         <ImageView
             android:id="@+id/todoPriorityColor"
@@ -41,7 +45,7 @@
             android:layout_below="@+id/todoCheckBox"
             android:layout_alignParentEnd="true"
             android:background="@drawable/type"
-            android:contentDescription="Todo Status will be shown here" />
+            android:contentDescription="@string/todo_prioritycolor" />
 
     </RelativeLayout>
 
