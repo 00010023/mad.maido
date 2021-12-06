@@ -61,6 +61,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
         return view;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -90,6 +91,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
             } else {
                 newHigh.setChecked(true);
             }
+
+            newTaskSaveButton.setText("Edit");
 
             assert task != null;
             if(task.length()>0)
