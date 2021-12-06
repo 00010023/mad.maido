@@ -2,7 +2,8 @@
     <string name="app_name">Maido</string>
     <string name="tasks">Maido\'s Todos</string>
     <string name="add_description">ADD</string>
-    <string name="new_task_text">New Task goes here</string>
+    <string name="new_task_text">New task title here...</string>
     <string name="new_task_add_text">Save</string>
     <string name="loader_screen_text">Centerized Logo Picture on Loader</string>
+    <string name="subTasks">Keep track of your todo with us!</string>
 </resources>

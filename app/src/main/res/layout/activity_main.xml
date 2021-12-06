@@ -10,17 +10,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="@string/tasks"
         android:textColor="@color/black"
         android:textSize="32sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tasksSubText"
+        android:layout_below="@+id/tasksText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/subTasks"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tasksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tasksText"
+        android:layout_below="@id/tasksSubText"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true" />
 

@@ -1,12 +1,19 @@
 package com.uwussimo.maido.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,12 +24,15 @@ import com.uwussimo.maido.Model.TodoModel;
 import com.uwussimo.maido.R;
 import com.uwussimo.maido.Utils.DatabaseHandler;
 
+import org.w3c.dom.Text;
+
+import java.io.Console;
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     private List<TodoModel> todoList;
-    private DatabaseHandler db;
-    private MainActivity activity;
+    private final DatabaseHandler db;
+    private final MainActivity activity;
 
     public TodoAdapter(DatabaseHandler db, MainActivity activity) {
         this.db = db;
@@ -54,6 +64,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
                 }
             }
         });
+        holder.subtitle.setText(item.getNotes());
+
+        int color = 0;
+        String type = item.getPriority();
+        if (type.matches("Normal")) {
+            color = Color.parseColor("#009EE3");
+        } else if (type.matches("Low")) {
+            color = Color.parseColor("#33AA77");
+        } else {
+            color = Color.parseColor("#FF7799");
+        }
+        ((GradientDrawable) holder.priority.getBackground()).setColor(color);
     }
 
     private boolean toBoolean(int n) {
@@ -69,6 +91,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         return activity;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTasks(List<TodoModel> todoList) {
         this.todoList = todoList;
         notifyDataSetChanged();
@@ -86,6 +109,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
         bundle.putString("task", item.getTask());
+        bundle.putString("priority", item.getPriority());
+        bundle.putString("notes", item.getNotes());
         AddNewTask fragment = new AddNewTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddNewTask.TAG);
@@ -93,10 +118,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox task;
+        TextView subtitle;
+        ImageView priority;
 
         ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
+            subtitle = view.findViewById(R.id.todoTextBoxDescription);
+            priority = view.findViewById(R.id.todoPriorityColor);
         }
     }
 

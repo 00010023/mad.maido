@@ -1,5 +1,6 @@
 package com.uwussimo.maido.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +31,12 @@ import java.util.Objects;
 public class AddNewTask extends BottomSheetDialogFragment {
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
+    private EditText newTaskSubText;
+    private RadioGroup newTaskPriority;
     private Button newTaskSaveButton;
+    private RadioButton newHigh;
+    private RadioButton newNormal;
+    private RadioButton newLow;
 
     private DatabaseHandler db;
 
@@ -48,7 +56,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.new_task, container, false);
-        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        Objects.requireNonNull(getDialog()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         return view;
     }
@@ -56,8 +64,13 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        newTaskText = Objects.requireNonNull(getView()).findViewById(R.id.newTaskText);
-        newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
+        newTaskText = requireView().findViewById(R.id.newTaskText);
+        newTaskSaveButton = requireView().findViewById(R.id.newTaskButton);
+        newTaskSubText = requireView().findViewById(R.id.newTaskDetailText);
+        newTaskPriority = requireView().findViewById(R.id.newTaskRadioLayout);
+        newHigh = requireView().findViewById(R.id.radioHigh);
+        newNormal = requireView().findViewById(R.id.radioNormal);
+        newLow = requireView().findViewById(R.id.radioLow);
 
         boolean isUpdate = false;
 
@@ -65,10 +78,22 @@ public class AddNewTask extends BottomSheetDialogFragment {
         if(bundle != null){
             isUpdate = true;
             String task = bundle.getString("task");
+            String notes = bundle.getString("notes");
+            String priority = bundle.getString("priority");
             newTaskText.setText(task);
+            newTaskSubText.setText(notes);
+
+            if (priority.matches("Normal")) {
+                newNormal.setChecked(true);
+            } else if (priority.matches("Low")) {
+                newLow.setChecked(true);
+            } else {
+                newHigh.setChecked(true);
+            }
+
             assert task != null;
             if(task.length()>0)
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white));
+                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
         }
 
         db = new DatabaseHandler(getActivity());
@@ -87,7 +112,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 }
                 else{
                     newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.white));
+                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
                 }
             }
 
@@ -98,16 +123,35 @@ public class AddNewTask extends BottomSheetDialogFragment {
 
         final boolean finalIsUpdate = isUpdate;
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
+                String note = newTaskSubText.getText().toString();
+                String priority;
+
+                switch (newTaskPriority.getCheckedRadioButtonId()) {
+                    case R.id.radioLow:
+                        priority = "Low";
+                        break;
+                    case R.id.radioHigh:
+                        priority = "High";
+                        break;
+                    default:
+                        priority = "Normal";
+                }
+
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
+                    db.updatePriority(bundle.getInt("priority"), priority);
+                    db.updateNotes(bundle.getInt("notes"), note);
                 }
                 else {
                     TodoModel task = new TodoModel();
                     task.setTask(text);
                     task.setStatus(0);
+                    task.setPriority(priority);
+                    task.setNotes(note);
                     db.insertTask(task);
                 }
                 dismiss();

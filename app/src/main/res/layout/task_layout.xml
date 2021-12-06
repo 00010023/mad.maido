@@ -1,5 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="4dp"
@@ -16,9 +17,31 @@
             android:id="@+id/todoCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sample task inside the application"
+            android:text="Title of your Todo goes here"
             android:paddingStart="8dp"
-            android:buttonTint="@android:color/black" />
+            android:buttonTint="@android:color/black"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/todoTextBoxDescription"
+            android:layout_below="@+id/todoCheckBox"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Additional information will be shown here!" />
+
+        <ImageView
+            android:id="@+id/todoPriorityColor"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_below="@+id/todoCheckBox"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/type"
+            android:contentDescription="Todo Status will be shown here" />
 
     </RelativeLayout>
 
