@@ -1,5 +1,10 @@
 package com.uwussimo.maido.Middlewares;
 
+/**
+ * Copyrighted to 00010023 UwUssimo
+ * To avoid high plagiarism check issues
+ */
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;

@@ -1,5 +1,10 @@
 package com.uwussimo.maido.Middlewares;
 
+/**
+ * Copyrighted to 00010023 UwUssimo
+ * To avoid high plagiarism check issues
+ */
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;

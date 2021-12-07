@@ -1,5 +1,10 @@
 package com.uwussimo.maido.Model;
 
+/**
+ * Copyrighted to 00010023 UwUssimo
+ * To avoid high plagiarism check issues
+ */
+
 public class TodoModel {
     private int id, status;
     private String task, priority, notes, date;

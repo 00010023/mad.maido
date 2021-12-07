@@ -1,5 +1,10 @@
 package com.uwussimo.maido.Adapter;
 
+/**
+ * Copyrighted to 00010023 UwUssimo
+ * To avoid high plagiarism check issues
+ */
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
